@@ -1,30 +1,46 @@
-// --- DOM Elements ---
+// --- Elementos do DOM ---
 const btnJaInstalei = document.getElementById('btn-ja-instalei');
 const stepApps = document.getElementById('step-apps');
 const stepForm = document.getElementById('step-form');
 const formTeste = document.getElementById('formTeste');
 const inputPhone = document.getElementById('whatsapp');
 const inputCountry = document.getElementById('pais');
+const inputFlag = document.getElementById('flag-icon');
 const toast = document.getElementById('toast');
 const btnSubmit = formTeste.querySelector('button[type="submit"]');
 const btnText = document.getElementById('btn-text');
 
-// --- State Management ---
+// --- Mapa de Bandeiras ---
+const flags = {
+    '+55': 'https://flagcdn.com/w20/br.png',
+    '+351': 'https://flagcdn.com/w20/pt.png',
+    '+1': 'https://flagcdn.com/w20/us.png'
+};
 
-// 1. Botão "Já Instalei" (Avançar Etapa)
-btnJaInstalei.addEventListener('click', () => {
-    stepApps.classList.add('hidden');
-    stepForm.classList.remove('hidden');
-    stepForm.classList.add('fade-in'); // Classe CSS se quiser animação
+// --- Event Listeners ---
+
+// 1. Troca de Bandeira ao mudar país
+inputCountry.addEventListener('change', () => {
+    const code = inputCountry.value;
+    inputFlag.src = flags[code] || flags['+55'];
 });
 
-// 2. Máscara de Telefone Inteligente
+// 2. Avançar Etapa (Botão Já Instalei)
+if (btnJaInstalei) {
+    btnJaInstalei.addEventListener('click', () => {
+        stepApps.classList.add('hidden');
+        stepForm.classList.remove('hidden');
+        stepForm.classList.add('fade-in');
+    });
+}
+
+// 3. Máscara de Telefone
 inputPhone.addEventListener('input', (e) => {
-    let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é número
+    let value = e.target.value.replace(/\D/g, ''); // Remove letras
     const country = inputCountry.value;
 
     if (country === '+55') {
-        // Formato Brasileiro (XX) XXXXX-XXXX
+        // Formato (XX) XXXXX-XXXX
         value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
         value = value.replace(/(\d)(\d{4})$/, '$1-$2');
     }
@@ -32,59 +48,54 @@ inputPhone.addEventListener('input', (e) => {
     e.target.value = value;
 });
 
-// 3. Simulação de Envio do Formulário (Checkout/Teste)
+// 4. Submit do Formulário
 formTeste.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    // UI: Loading State
     setLoading(true);
 
-    // Dados do Formulário
     const formData = {
         nome: document.getElementById('nome').value,
         whatsapp: cleanPhone(inputPhone.value),
         pais: inputCountry.value,
         email: document.getElementById('email').value,
         horario: document.getElementById('horario').value,
-        ip: getMockUserIP() // Vem do mockData.js
+        ip: getMockUserIP() // Função do mockData.js
     };
 
-    // Formata o número completo (+5511...)
     const fullNumber = formData.pais + formData.whatsapp;
 
     try {
-        // Simula delay de rede (2 segundos)
-        await new Promise(r => setTimeout(r, 2000));
+        // Simula delay de rede (1.5s)
+        await new Promise(r => setTimeout(r, 1500));
 
-        // VALIDAÇÃO 1: Check de IP Bloqueado
+        // VALIDAÇÕES (Simuladas)
         if (MockDB.blockedIPs.includes(formData.ip)) {
-            throw new Error("Este endereço IP já possui solicitações recentes bloqueadas.");
+            throw new Error("Solicitação bloqueada por segurança (IP Repetido).");
         }
-
-        // VALIDAÇÃO 2: Check de Número Repetido
-        if (MockDB.usedPhones.includes(fullNumber)) {
-            throw new Error("Este número de WhatsApp já solicitou um teste anteriormente.");
+        
+        // Simulação de número bloqueado: (11) 99999-9999
+        if (formData.whatsapp.includes('999999999')) {
+             throw new Error("Este número já possui um teste ativo.");
         }
 
         // SUCESSO
-        showToast("success", "✅ Solicitação Recebida! Seus dados chegarão no WhatsApp.");
+        showToast("success", "✅ Solicitação Enviada! Verifique seu WhatsApp.");
         formTeste.reset();
         
-        // Retorna para o passo inicial após 3 seg
+        // Volta ao inicio após 4s
         setTimeout(() => {
             stepForm.classList.add('hidden');
             stepApps.classList.remove('hidden');
-        }, 3000);
+        }, 4000);
 
     } catch (error) {
-        // ERRO
         showToast("error", `⚠️ ${error.message}`);
     } finally {
         setLoading(false);
     }
 });
 
-// --- Helpers ---
+// --- Funções Auxiliares ---
 
 function cleanPhone(phone) {
     return phone.replace(/\D/g, '');
@@ -93,37 +104,33 @@ function cleanPhone(phone) {
 function setLoading(isLoading) {
     if (isLoading) {
         btnSubmit.disabled = true;
+        btnSubmit.style.opacity = '0.7';
         btnText.textContent = "Processando...";
-        // Aqui você pode mostrar um spinner CSS
     } else {
         btnSubmit.disabled = false;
-        btnText.textContent = "Gerar Solicitação";
+        btnSubmit.style.opacity = '1';
+        btnText.textContent = "Gerar Acesso DualAPP";
     }
 }
 
-// Sistema de Toast (Notificação)
 function showToast(type, message) {
-    toast.className = `toast ${type}`;
+    toast.className = `toast ${type}`; // 'toast success' ou 'toast error'
     toast.textContent = message;
     toast.classList.remove('hidden');
 
-    // Auto-hide após 4 segundos
     setTimeout(() => {
         toast.classList.add('hidden');
     }, 4000);
 }
 
-// Simulação de Checkout
 function simularCheckout() {
     const btn = event.target;
-    const originalText = btn.textContent;
-    
-    btn.textContent = "Redirecionando...";
+    const oldText = btn.innerHTML;
+    btn.innerHTML = "Redirecionando...";
     btn.disabled = true;
-
     setTimeout(() => {
-        alert("🔄 Redirecionando para o Mercado Pago...\n(Isso é uma simulação do Checkout)");
-        btn.textContent = originalText;
+        alert("🔄 Redirecionando para Mercado Pago...");
+        btn.innerHTML = oldText;
         btn.disabled = false;
-    }, 1500);
+    }, 1000);
 }

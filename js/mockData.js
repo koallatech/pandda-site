@@ -1,29 +1,18 @@
-/* MOCK DATA - Simulação do Backend
-    Este arquivo simula as tabelas do Supabase
-*/
-
+/* MOCK DATABASE */
 const MockDB = {
-    // Lista de IPs bloqueados (simulação)
+    // IPs que simulamos estar bloqueados
     blockedIPs: [
-        '192.168.0.1', 
-        '10.0.0.50'
+        '10.0.0.1', 
+        '192.168.1.50'
     ],
-
-    // Lista de telefones que já pediram teste
-    usedPhones: [
-        '+5511999999999', // Número de teste bloqueado
-        '+5521988887777'
-    ],
-
-    // Lista de Usuários Ativos
-    activeClients: [
-        { phone: '+5511999999999', plan: 'DualAPP' }
+    // Números que já testaram (formato limpo sem +55)
+    usedNumbers: [
+        '11999999999' 
     ]
 };
 
-// Simula a obtenção do IP do usuário
+// Retorna um IP aleatório para simular usuário
 function getMockUserIP() {
-    // Retorna um IP aleatório para teste ou um fixo se quiser testar bloqueio
-    return '200.100.50.25'; 
-    // Mude para '192.168.0.1' para testar o bloqueio de IP
+    // Retorna IP limpo. Mude para '10.0.0.1' para testar erro de bloqueio.
+    return '200.150.10.1'; 
 }
