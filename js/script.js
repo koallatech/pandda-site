@@ -1,7 +1,11 @@
 // --- Elementos do DOM ---
+const btnIniciarTeste = document.getElementById('btn-iniciar-teste'); // Novo Botão
 const btnJaInstalei = document.getElementById('btn-ja-instalei');
+
+const stepStart = document.getElementById('step-start'); // Novo Passo
 const stepApps = document.getElementById('step-apps');
 const stepForm = document.getElementById('step-form');
+
 const formTeste = document.getElementById('formTeste');
 const inputPhone = document.getElementById('whatsapp');
 const inputCountry = document.getElementById('pais');
@@ -19,13 +23,24 @@ const flags = {
 
 // --- Event Listeners ---
 
-// 1. Troca de Bandeira ao mudar país
+// 1. Troca de Bandeira
 inputCountry.addEventListener('change', () => {
     const code = inputCountry.value;
     inputFlag.src = flags[code] || flags['+55'];
 });
 
-// 2. Avançar Etapa (Botão Já Instalei)
+// 2. Fluxo de Etapas (Step 0 -> Step 1)
+if (btnIniciarTeste) {
+    btnIniciarTeste.addEventListener('click', () => {
+        // Fade Out Step 0
+        stepStart.classList.add('hidden');
+        // Fade In Step 1
+        stepApps.classList.remove('hidden');
+        stepApps.classList.add('fade-in');
+    });
+}
+
+// 3. Fluxo de Etapas (Step 1 -> Step 2)
 if (btnJaInstalei) {
     btnJaInstalei.addEventListener('click', () => {
         stepApps.classList.add('hidden');
@@ -34,21 +49,19 @@ if (btnJaInstalei) {
     });
 }
 
-// 3. Máscara de Telefone
+// 4. Máscara de Telefone
 inputPhone.addEventListener('input', (e) => {
-    let value = e.target.value.replace(/\D/g, ''); // Remove letras
+    let value = e.target.value.replace(/\D/g, ''); 
     const country = inputCountry.value;
 
     if (country === '+55') {
-        // Formato (XX) XXXXX-XXXX
         value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
         value = value.replace(/(\d)(\d{4})$/, '$1-$2');
     }
-    
     e.target.value = value;
 });
 
-// 4. Submit do Formulário
+// 5. Submit do Formulário
 formTeste.addEventListener('submit', async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -59,33 +72,28 @@ formTeste.addEventListener('submit', async (e) => {
         pais: inputCountry.value,
         email: document.getElementById('email').value,
         horario: document.getElementById('horario').value,
-        ip: getMockUserIP() // Função do mockData.js
+        ip: getMockUserIP()
     };
 
-    const fullNumber = formData.pais + formData.whatsapp;
-
     try {
-        // Simula delay de rede (1.5s)
         await new Promise(r => setTimeout(r, 1500));
 
-        // VALIDAÇÕES (Simuladas)
         if (MockDB.blockedIPs.includes(formData.ip)) {
-            throw new Error("Solicitação bloqueada por segurança (IP Repetido).");
+            throw new Error("Solicitação bloqueada por segurança.");
         }
         
-        // Simulação de número bloqueado: (11) 99999-9999
         if (formData.whatsapp.includes('999999999')) {
              throw new Error("Este número já possui um teste ativo.");
         }
 
-        // SUCESSO
         showToast("success", "✅ Solicitação Enviada! Verifique seu WhatsApp.");
         formTeste.reset();
         
-        // Volta ao inicio após 4s
+        // Volta ao inicio COMPLETO após 4s
         setTimeout(() => {
             stepForm.classList.add('hidden');
-            stepApps.classList.remove('hidden');
+            stepStart.classList.remove('hidden');
+            stepStart.classList.add('fade-in');
         }, 4000);
 
     } catch (error) {
@@ -95,11 +103,8 @@ formTeste.addEventListener('submit', async (e) => {
     }
 });
 
-// --- Funções Auxiliares ---
-
-function cleanPhone(phone) {
-    return phone.replace(/\D/g, '');
-}
+// --- Helpers ---
+function cleanPhone(phone) { return phone.replace(/\D/g, ''); }
 
 function setLoading(isLoading) {
     if (isLoading) {
@@ -114,13 +119,10 @@ function setLoading(isLoading) {
 }
 
 function showToast(type, message) {
-    toast.className = `toast ${type}`; // 'toast success' ou 'toast error'
+    toast.className = `toast ${type}`;
     toast.textContent = message;
     toast.classList.remove('hidden');
-
-    setTimeout(() => {
-        toast.classList.add('hidden');
-    }, 4000);
+    setTimeout(() => { toast.classList.add('hidden'); }, 4000);
 }
 
 function simularCheckout() {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pandda | Streaming de Alta Disponibilidade</title>
+    <title>Pandda | Streaming de Alto Bitrate</title>
     
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
@@ -38,9 +38,9 @@
         <div class="hero-bg-image"></div>
         
         <div class="hero-content">
-            <div class="badge-hero"><i class="ph-fill ph-star"></i> Tecnologia DualAPP</div>
+            <div class="badge-hero"><i class="ph-fill ph-star"></i> Tecnologia Exclusiva DualAPP</div>
             <h1>Sua sala de cinema,<br>sem interrupções.</h1>
-            <p>Entretenimento completo com a segurança de duas rotas de sinal independentes. Se uma oscilar, a outra assume.</p>
+            <p>Entretenimento com menor compressão de imagem e a segurança de duas rotas de sinal. Se uma oscilar, a outra assume.</p>
             
             <div class="hero-actions">
                 <a href="#teste-gratis" class="btn-primary big-btn">
@@ -49,8 +49,8 @@
             </div>
             
             <div class="hero-info">
-                <span><i class="ph-fill ph-check-circle"></i> +80.000 Conteúdos</span>
-                <span><i class="ph-fill ph-check-circle"></i> Qualidade 4K/FHD</span>
+                <span><i class="ph-fill ph-check-circle"></i> Catálogo Completo</span>
+                <span><i class="ph-fill ph-check-circle"></i> Imagem de Alto Bitrate</span>
             </div>
         </div>
     </section>
@@ -63,15 +63,15 @@
             </div>
             <div class="content-item">
                 <i class="ph-duotone ph-film-slate icon-content"></i>
-                <span>Cinema em Casa</span>
+                <span>Filmes e Séries</span>
             </div>
             <div class="content-item">
-                <i class="ph-duotone ph-television icon-content"></i>
-                <span>Séries e Novelas</span>
+                <i class="ph-duotone ph-mask-happy icon-content"></i>
+                <span>Novelas e Doramas</span>
             </div>
             <div class="content-item">
                 <i class="ph-duotone ph-baby icon-content"></i>
-                <span>Espaço Kids</span>
+                <span>Conteúdo Kids</span>
             </div>
         </div>
     </section>
@@ -85,17 +85,17 @@
             <div class="card feature-card">
                 <div class="icon-box"><i class="ph-duotone ph-arrows-split"></i></div>
                 <h3>Redundância DualAPP</h3>
-                <p>Receba acesso a 2 servidores simultaneamente. Caiu a rota A? O servidor B assume instantaneamente.</p>
+                <p>Receba acesso a 2 rotas de servidores. Caiu a rota A? O servidor B assume instantaneamente.</p>
             </div>
             <div class="card feature-card">
-                <div class="icon-box"><i class="ph-duotone ph-devices"></i></div>
-                <h3>Multi-Telas</h3>
-                <p>Compatível com Smart TVs, TV Box, Celulares e PC. Assista onde estiver com a mesma qualidade.</p>
+                <div class="icon-box"><i class="ph-duotone ph-aperture"></i></div>
+                <h3>Qualidade Real</h3>
+                <p>Menor taxa de compressão. Imagens mais nítidas e cores vivas, especialmente em filmes e doramas.</p>
             </div>
             <div class="card feature-card">
-                <div class="icon-box"><i class="ph-duotone ph-shield-check"></i></div>
-                <h3>Transparência Técnica</h3>
-                <p>Sem promessas falsas. Entregamos infraestrutura real para minimizar falhas de conexão.</p>
+                <div class="icon-box"><i class="ph-duotone ph-users-three"></i></div>
+                <h3>Telas Adicionais</h3>
+                <p>O plano padrão inclui 1 acesso. Expansível para até 3 telas simultâneas (consulte valores).</p>
             </div>
         </div>
     </section>
@@ -110,7 +110,21 @@
             <div id="toast" class="toast hidden"></div>
 
             <form id="formTeste">
-                <div id="step-apps" class="step-content">
+                
+                <div id="step-start" class="step-content fade-in">
+                    <div style="text-align: center; padding: 20px 0;">
+                        <i class="ph-duotone ph-rocket-launch" style="font-size: 4rem; color: var(--primary); margin-bottom: 20px;"></i>
+                        <h3 style="color: #fff; margin-bottom: 10px;">Experimente por 6 Horas</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 30px;">
+                            Liberação imediata pelo nosso sistema.<br>Sem compromisso, sem cartão de crédito.
+                        </p>
+                        <button type="button" class="btn-primary full-width big-btn" id="btn-iniciar-teste">
+                            Iniciar Solicitação <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="step-apps" class="step-content hidden">
                     <div class="apps-grid">
                         <div class="app-icon"><i class="ph-fill ph-television"></i></div>
                         <div class="app-icon"><i class="ph-fill ph-android-logo"></i></div>
@@ -118,7 +132,7 @@
                     </div>
                     <h3>Você já tem o App instalado?</h3>
                     <p style="text-align:center; color: var(--text-muted); margin-bottom:20px; font-size:0.9rem;">
-                        O tempo de teste (6h) começa a contar no momento do envio.
+                        O tempo de teste começa a contar no momento do envio.
                     </p>
                     
                     <div class="action-buttons">
@@ -126,7 +140,7 @@
                             <i class="ph ph-download-simple"></i> Guia de Instalação
                         </button>
                         <button type="button" class="btn-primary" id="btn-ja-instalei">
-                            Já instalei <i class="ph-bold ph-arrow-right"></i>
+                            Já instalei <i class="ph-bold ph-check"></i>
                         </button>
                     </div>
                 </div>
@@ -205,16 +219,15 @@
                 </button>
 
                 <div class="payment-methods">
-                    <div class="method" title="Pix"><i class="ph-fill ph-pix-logo"></i></div>
-                    <div class="method" title="Cartão de Crédito"><i class="ph-fill ph-credit-card"></i></div>
-                    <div class="method" title="Boleto"><i class="ph-fill ph-barcode"></i></div>
-                    <span class="secure-checkout-text"><i class="ph-fill ph-lock-key"></i> Checkout Seguro</span>
+                    <div class="method"><i class="ph-fill ph-pix-logo"></i></div>
+                    <div class="method"><i class="ph-fill ph-credit-card"></i></div>
+                    <span class="secure-checkout-text"><i class="ph-fill ph-lock-key"></i> Compra Segura</span>
                 </div>
             </div>
 
             <div class="offer-right">
-                <h3>Tudo incluso.<br>Sem surpresas.</h3>
-                <p>Uma única assinatura desbloqueia o potencial máximo da sua TV, com a redundância de sinal que só o Pandda tem.</p>
+                <h3>Vasto Conteúdo.<br>Qualidade Superior.</h3>
+                <p>Uma assinatura, máxima compatibilidade. Ideal para quem preza por imagem limpa e sinal estável.</p>
 
                 <div class="specs-grid">
                     <div class="spec-item">
@@ -227,22 +240,22 @@
                     <div class="spec-item">
                         <div class="spec-icon"><i class="ph-fill ph-film-strip"></i></div>
                         <div class="spec-info">
-                            <h4>VOD Atualizado</h4>
-                            <span>+20.000 Filmes e Séries</span>
+                            <h4>Baixa Compressão</h4>
+                            <span>Qualidade de imagem superior</span>
                         </div>
                     </div>
                     <div class="spec-item">
-                        <div class="spec-icon"><i class="ph-fill ph-television-simple"></i></div>
+                        <div class="spec-icon"><i class="ph-fill ph-monitor-play"></i></div>
                         <div class="spec-info">
-                            <h4>Qualidade 4K</h4>
-                            <span>Canais SD, HD, FHD e 4K</span>
+                            <h4>1 Tela Inclusa</h4>
+                            <span>Uso único (não simultâneo)</span>
                         </div>
                     </div>
                     <div class="spec-item">
-                        <div class="spec-icon"><i class="ph-fill ph-device-mobile-camera"></i></div>
+                        <div class="spec-icon"><i class="ph-fill ph-plus-circle"></i></div>
                         <div class="spec-info">
-                            <h4>Multi-Dispositivo</h4>
-                            <span>TV, Celular, PC e TV Box</span>
+                            <h4>Pontos Adicionais</h4>
+                            <span>Opção de até +2 telas</span>
                         </div>
                     </div>
                     <div class="spec-item">
