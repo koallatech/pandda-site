@@ -3,166 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pandda | Streaming de Alta Disponibilidade</title>
+    <title>Pandda | Streaming Premium</title>
     
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+    <div class="glow-bg top-left"></div>
+    <div class="glow-bg bottom-right"></div>
+
     <header>
-        <div class="logo"><i class="ph ph-television-simple"></i> Pandda<span>.</span></div>
+        <div class="logo">
+            <i class="ph-fill ph-television-simple"></i> Pandda<span>.</span>
+        </div>
         <nav>
-            <a href="#planos" class="nav-link">Planos</a>
-            <a href="#faq" class="nav-link">Dúvidas</a>
-            <a href="/cliente" class="btn-login" onclick="alert('Em breve: Área do Cliente com Login via Whats')">
-                <i class="ph ph-user-circle"></i> Área do Cliente
+            <div class="nav-links">
+                <a href="#apps">Apps</a>
+                <a href="#faq">Ajuda</a>
+            </div>
+            <a href="/cliente" class="btn-login">
+                <i class="ph ph-user-circle"></i> 
+                <span>Minha Conta</span>
             </a>
         </nav>
     </header>
 
     <section class="hero">
-        <span class="tag">Plano DualAPP • Disponibilidade Garantida</span>
-        <h1>Sua TV com <br>Dupla Rota de Sinal.</h1>
-        <p>Oscilações de internet acontecem. O Pandda entrega 2 aplicativos independentes no mesmo plano. Se um falhar, o outro assume. É a redundância que faltava no seu lazer.</p>
-        <div class="hero-actions">
-            <a href="#teste-gratis" class="btn-primary">Solicitar Teste de 6h</a>
-            <a href="#planos" class="btn-outline">Ver Preço</a>
+        <div class="hero-content">
+            <div class="badge-hero"><i class="ph-fill ph-star"></i> Disponibilidade Garantida</div>
+            <h1>Entretenimento sem<br>interrupções.</h1>
+            <p>O único com tecnologia <strong>DualAPP</strong>. Entregamos duas rotas de sinal independentes para garantir que sua TV não pare, mesmo se sua internet oscilar.</p>
+            
+            <div class="hero-actions">
+                <a href="#teste-gratis" class="btn-primary">
+                    <i class="ph-bold ph-play"></i> Testar Grátis
+                </a>
+                <a href="#plano" class="btn-outline">
+                    <i class="ph-bold ph-crown"></i> Ver Plano
+                </a>
+            </div>
+            
+            <div class="hero-info">
+                <span><i class="ph-fill ph-check-circle"></i> Sem fidelidade</span>
+                <span><i class="ph-fill ph-check-circle"></i> Ativação imediata</span>
+            </div>
         </div>
     </section>
 
     <section class="features">
-        <div class="card">
-            <div class="icon-box"><i class="ph ph-arrows-split"></i></div>
-            <h3>Redundância DualAPP</h3>
-            <p>Acesso a 2 servidores distintos. O "Estepe" da sua diversão para dias de instabilidade na sua região.</p>
+        <div class="card feature-card">
+            <div class="icon-box"><i class="ph-duotone ph-arrows-split"></i></div>
+            <h3>Sistema DualAPP</h3>
+            <p>Receba acesso a 2 servidores simultaneamente. Caiu a rota A? O servidor B assume instantaneamente.</p>
         </div>
-        <div class="card">
-            <div class="icon-box"><i class="ph ph-warning-circle"></i></div>
-            <h3>Honestidade Técnica</h3>
-            <p>Não existe "Anti-Travamento" mágico. Existe infraestrutura. Nós focamos em te dar opções reais de conexão.</p>
+        <div class="card feature-card">
+            <div class="icon-box"><i class="ph-duotone ph-devices"></i></div>
+            <h3>Multi-Telas</h3>
+            <p>Compatível com Smart TVs, TV Box, Celulares e PC. Assista onde estiver com a mesma qualidade.</p>
         </div>
-        <div class="card">
-            <div class="icon-box"><i class="ph ph-shield-check"></i></div>
-            <h3>Segurança Total</h3>
-            <p>Seus dados são criptografados. Pagamento via Mercado Pago ou Pix direto. Sem fidelidade.</p>
+        <div class="card feature-card">
+            <div class="icon-box"><i class="ph-duotone ph-shield-check"></i></div>
+            <h3>Transparência</h3>
+            <p>Sem promessas falsas. Focamos em infraestrutura real para minimizar falhas de conexão.</p>
         </div>
     </section>
 
     <section id="teste-gratis" class="test-section">
         <div class="form-container">
             <div class="form-header">
-                <h2>Solicite seu Teste</h2>
-                <p>Verificação automática de disponibilidade em tempo real.</p>
+                <h2><i class="ph-duotone ph-ticket"></i> Solicite seu Teste</h2>
+                <p>Verificação automática em tempo real via WhatsApp.</p>
             </div>
 
             <div id="toast" class="toast hidden"></div>
 
             <form id="formTeste">
-                
                 <div id="step-apps" class="step-content">
-                    <div class="step-icon"><i class="ph ph-download-simple"></i></div>
-                    <h3>Você já instalou o App?</h3>
-                    <p>Para aproveitar as 6 horas de teste, é necessário já ter o aplicativo de reprodução instalado no seu dispositivo.</p>
+                    <div class="apps-grid">
+                        <div class="app-icon"><i class="ph-fill ph-television"></i></div>
+                        <div class="app-icon"><i class="ph-fill ph-android-logo"></i></div>
+                        <div class="app-icon"><i class="ph-fill ph-desktop"></i></div>
+                    </div>
+                    <h3>Você já tem o App instalado?</h3>
+                    <p>Para o teste de 6 horas valer a pena, recomendamos já ter o aplicativo pronto para uso.</p>
                     
                     <div class="action-buttons">
-                        <button type="button" class="btn-secondary" onclick="window.open('https://google.com', '_blank')">Não, preciso do guia</button>
-                        <button type="button" class="btn-primary" id="btn-ja-instalei">Sim, já instalei</button>
+                        <button type="button" class="btn-secondary" onclick="window.open('https://google.com', '_blank')">
+                            <i class="ph ph-download-simple"></i> Guia de Instalação
+                        </button>
+                        <button type="button" class="btn-primary" id="btn-ja-instalei">
+                            Já instalei <i class="ph-bold ph-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
 
                 <div id="step-form" class="step-content hidden">
                     
-                    <div class="form-group">
+                    <div class="input-group">
                         <label>Nome Completo</label>
-                        <input type="text" id="nome" placeholder="Seu nome" required>
+                        <div class="input-wrapper">
+                            <i class="ph ph-user input-icon"></i>
+                            <input type="text" id="nome" placeholder="Seu nome" required>
+                        </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="input-group">
                         <label>WhatsApp</label>
                         <div class="phone-wrapper">
-                            <select id="pais" class="country-select">
-                                <option value="+55">🇧🇷 +55</option>
-                                <option value="+351">🇵🇹 +351</option>
-                                <option value="+1">🇺🇸 +1</option>
-                            </select>
-                            <input type="tel" id="whatsapp" placeholder="(XX) XXXXX-XXXX" maxlength="15" required>
+                            <div class="country-wrapper">
+                                <img src="https://flagcdn.com/w20/br.png" alt="Brasil" id="flag-icon">
+                                <select id="pais" class="country-select">
+                                    <option value="+55">🇧🇷 +55</option>
+                                    <option value="+351">🇵🇹 +351</option>
+                                    <option value="+1">🇺🇸 +1</option>
+                                </select>
+                            </div>
+                            <div class="input-wrapper full">
+                                <i class="ph ph-whatsapp-logo input-icon"></i>
+                                <input type="tel" id="whatsapp" placeholder="(XX) 9XXXX-XXXX" maxlength="15" required>
+                            </div>
                         </div>
-                        <small id="feedback-whats"></small>
                     </div>
 
-                    <div class="form-group">
+                    <div class="input-group">
                         <label>E-mail</label>
-                        <input type="email" id="email" placeholder="seu@email.com" required>
+                        <div class="input-wrapper">
+                            <i class="ph ph-envelope input-icon"></i>
+                            <input type="email" id="email" placeholder="seu@email.com" required>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Horário de Início (Hoje)</label>
-                        <select id="horario" required>
-                            <option value="agora">Iniciar Agora (Imediato)</option>
-                            <option value="08:00">08:00</option>
-                            <option value="10:00">10:00</option>
-                            <option value="14:00">14:00</option>
-                            <option value="18:00">18:00</option>
-                        </select>
+                    <div class="input-group">
+                        <label>Horário do Teste</label>
+                        <div class="input-wrapper">
+                            <i class="ph ph-clock input-icon"></i>
+                            <select id="horario" required>
+                                <option value="agora">Começar Agora</option>
+                                <option value="18:00">Agendar para as 18:00</option>
+                                <option value="20:00">Agendar para as 20:00</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn-primary full-width">
-                        <span id="btn-text">Gerar Solicitação</span>
-                        <span id="btn-loader" class="loader hidden"></span>
+                    <button type="submit" class="btn-primary full-width animate-pulse">
+                        <span id="btn-text">Gerar Acesso DualAPP</span>
                     </button>
                 </div>
-
             </form>
         </div>
     </section>
 
-    <section id="planos" class="pricing-section">
-        <div class="pricing-card">
-            <div class="badge">Mais Vendido</div>
-            <h2>Plano DualAPP</h2>
-            <div class="price">R$ 34,90<span>/mês</span></div>
-            <ul class="benefits">
-                <li><i class="ph ph-check-circle"></i> Acesso a 2 Aplicativos</li>
-                <li><i class="ph ph-check-circle"></i> Canais, Filmes e Séries</li>
-                <li><i class="ph ph-check-circle"></i> Qualidade 4K/FHD</li>
-                <li><i class="ph ph-check-circle"></i> Suporte Prioritário</li>
+    <section id="plano" class="pricing-section">
+        <div class="pricing-card premium-border">
+            <div class="pricing-header">
+                <h3>Acesso Premium</h3>
+                <p>Plano DualAPP Completo</p>
+            </div>
+            
+            <div class="price-box">
+                <span class="currency">R$</span>
+                <span class="value">34</span>
+                <div class="cents-period">
+                    <span class="cents">,90</span>
+                    <span class="period">/mês</span>
+                </div>
+            </div>
+
+            <ul class="benefits-list">
+                <li><i class="ph-fill ph-check-circle"></i> <span>Acesso a <strong>2 Aplicativos</strong> (Backup)</span></li>
+                <li><i class="ph-fill ph-check-circle"></i> <span>Canais 4K, FHD e SD</span></li>
+                <li><i class="ph-fill ph-check-circle"></i> <span>Filmes e Séries On-Demand</span></li>
+                <li><i class="ph-fill ph-check-circle"></i> <span>Guia de Programação (EPG)</span></li>
+                <li><i class="ph-fill ph-check-circle"></i> <span>Suporte via WhatsApp</span></li>
             </ul>
-            <button class="btn-primary full-width" onclick="simularCheckout()">Assinar Agora</button>
-            <p class="secure-note"><i class="ph ph-lock"></i> Checkout Seguro via Mercado Pago</p>
+
+            <button class="btn-primary full-width" onclick="simularCheckout()">
+                <i class="ph-bold ph-credit-card"></i> Assinar Agora
+            </button>
+            
+            <div class="payment-methods">
+                <i class="ph-fill ph-pix-logo"></i>
+                <i class="ph-fill ph-credit-card"></i>
+                <span>Pagamento Seguro</span>
+            </div>
         </div>
     </section>
 
-    <section id="faq" class="faq-section">
-        <h2>Perguntas Frequentes</h2>
-        
-        <details>
-            <summary>Como funciona o DualAPP?</summary>
-            <div class="faq-content">Receba dois logins diferentes. Se o servidor A oscilar na sua internet, você troca para o B em segundos.</div>
-        </details>
-        
-        <details>
-            <summary>Funciona em quais aparelhos?</summary>
-            <div class="faq-content">Smart TVs (Samsung/LG/Android), TV Box, Celulares e Computadores. Temos tutoriais para todos.</div>
-        </details>
-
-        <details>
-            <summary>Posso pedir teste mais de uma vez?</summary>
-            <div class="faq-content">Nosso sistema limita 1 teste por número/IP para garantir a qualidade do serviço para os assinantes.</div>
-        </details>
-    </section>
-
     <footer>
-        <div class="footer-content">
-            <p>&copy; 2026 Pandda Streaming. Todos os direitos reservados.</p>
-            <div class="secure-badges">
-                <span>SSL Blindado</span>
-                <span>Compra Segura</span>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <i class="ph-fill ph-television-simple"></i> Pandda<span>.</span>
+                </div>
+                <p>Entretenimento inteligente com redundância de sinal. A melhor escolha para sua família.</p>
+                <div class="social-links">
+                    <a href="#" class="social-btn instagram"><i class="ph-logo ph-instagram-logo"></i></a>
+                    <a href="#" class="social-btn whatsapp"><i class="ph-logo ph-whatsapp-logo"></i></a>
+                    <a href="#" class="social-btn telegram"><i class="ph-logo ph-telegram-logo"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Central de Ajuda</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Suporte</h4>
+                <ul class="contact-list">
+                    <li><i class="ph ph-whatsapp-logo"></i> (11) 99999-9999</li>
+                    <li><i class="ph ph-envelope-simple"></i> suporte@pandda.tv</li>
+                    <li><i class="ph ph-clock"></i> Seg a Sex: 09h às 18h</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; 2026 Pandda Streaming. Todos os direitos reservados.
+            </div>
+            <div class="security-badges">
+                <div class="badge-item"><i class="ph-fill ph-lock-key"></i> SSL Seguro</div>
+                <div class="badge-item"><i class="ph-fill ph-shield-check"></i> Antivirus</div>
             </div>
         </div>
     </footer>
